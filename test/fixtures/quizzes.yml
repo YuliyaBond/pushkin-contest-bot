@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyString
+  task_id: 9.99
+  level: MyString
+  decimal: MyString
+  answer: MyString
+
+two:
+  question: MyString
+  task_id: 9.99
+  level: MyString
+  decimal: MyString
+  answer: MyString

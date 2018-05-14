@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quizzes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Task</th>
+      <th>Level</th>
+      <th>Decimal</th>
+      <th>Answer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quizzes.each do |quiz| %>
+      <tr>
+        <td><%= quiz.question %></td>
+        <td><%= quiz.task_id %></td>
+        <td><%= quiz.level %></td>
+        <td><%= quiz.decimal %></td>
+        <td><%= quiz.answer %></td>
+        <td><%= link_to 'Show', quiz %></td>
+        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
+        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quiz', new_quiz_path %>

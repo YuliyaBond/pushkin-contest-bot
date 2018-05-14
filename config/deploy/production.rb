@@ -1,7 +1,6 @@
 set :branch, 'master'
 set :rails_env, 'production'
 
-
 set :puma_threads, [4, 12]
 set :puma_workers, 2
 

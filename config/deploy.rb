@@ -6,8 +6,9 @@ set :repo_url, "git@github.com:YuliyaBond/pushkin-contest-bot.git"
 
 set :deploy_to, "/var/www/pushkin"
 
-set :linked_files, "config/database.yml", "config/secrets.yml"
-set :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/system}
+
 
 set :pty, false
 

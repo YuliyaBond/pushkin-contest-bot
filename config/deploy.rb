@@ -2,7 +2,7 @@
 lock "~> 3.10.2"
 
 set :application, "pushkin_contest_bot"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :repo_url, "git@@github.com:YuliyaBond/pushkin-contest-bot.git"
 
 set :deploy_to, "/var/www/pushkin"
 

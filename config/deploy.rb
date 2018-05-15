@@ -16,7 +16,7 @@ set :pty, false
 
 set :ssh_options, { :forward_agent => true }
 
-set :rvm_ruby_version, '2.5.1@pushkin-contest-bot'
+set :rvm_ruby_version, '2.5.1'
 
 set :puma_preload_app, true
 set :puma_init_active_record, true

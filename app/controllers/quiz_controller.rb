@@ -10,14 +10,15 @@ class QuizController < ApplicationController
 
   def req
     
-    case params[:level].to_i
-    when 1
+  level = params[:level].to_i
+
+    if level == 1
       answer = level_1(params[:question])
-    when 2
+    elsif level == 2
       answer = level_2(params[:question])[0]
-    when 3
+    elsif level == 3
       answer = level_3(params[:question])
-    when 4
+    elsif level == 4
       answer = level_4(params[:question])
     end
 

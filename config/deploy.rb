@@ -18,6 +18,7 @@ set :rvm_ruby_version, '2.5.1'
 set :puma_preload_app, true
 set :puma_init_active_record, true
 
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

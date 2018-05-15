@@ -10,7 +10,7 @@ class QuizController < ApplicationController
 
   def req
     
-    case :level
+    case params[:level].to_i
     when 1
       answer = level_1(params[:question])
     when 2

@@ -3,10 +3,10 @@ require_relative '../services/pushkin'
 
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token  
-  PUSHKIN = FilePushkin.new.parse
+  FILE_POEMS = FilePushkin.new.parse
 
   def index 
-      
+    
   end
 
   def req
@@ -14,13 +14,13 @@ class QuizController < ApplicationController
   case params[:level].to_i
 
     when 1
-      answer = 1_level(params[:question])
+      answer = level_1(params[:question])
     when 2
-      answer = 2_level(params[:question])[0]
+      answer = level_2(params[:question])[0]
     when 3
-      answer = 3_level(params[:question])
+      answer = level_3(params[:question])
     when 4
-      answer = 4_level(params[:question])
+      answer = level_4(params[:question])
     end
 
     uri = URI("http://pushkin.rubyroidlabs.com/quiz")
@@ -30,14 +30,14 @@ class QuizController < ApplicationController
       task_id: params[:id]
     }
     Net::HTTP.post_form(uri, parameters)
-    
+
   end
 
   private
 
-  def 1_level(question)
+  def level_1(question)
     question = del(question)
-    PUSHKIN.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         line = del(line)
         return poem[0] if line == question
@@ -45,9 +45,9 @@ class QuizController < ApplicationController
     end
   end
 
-  def 2_level(question)
+  def level_2(question)
     parts = question.split('%')
-    PUSHKIN.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
           return line.split(' ') - question.split(' ')
@@ -56,11 +56,11 @@ class QuizController < ApplicationController
     end   
   end
 
-  def 3_level(question)
+  def level_3(question)
     parts = question.split("\n")
     str_1 = parts[0].split('%')
     
-    PUSHKIN.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
@@ -75,11 +75,11 @@ class QuizController < ApplicationController
     return @str
   end
 
-  def 4_level(question)
+  def level_4(question)
     parts = question.split("\n")
     str_1 = parts[0].split('%')
     
-    PUSHKIN.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
@@ -99,6 +99,6 @@ class QuizController < ApplicationController
   
   
   def del(str)
-    return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '') 
+    return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')
   end
 end

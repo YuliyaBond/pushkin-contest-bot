@@ -6,7 +6,7 @@ class QuizController < ApplicationController
   FILE_POEMS = FilePushkin.new.parse
 
   def index 
-    @questions=History.paginate(:page => params[:page], :per_page => 50)     
+      
   end
 
   def req

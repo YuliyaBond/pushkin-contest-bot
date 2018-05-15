@@ -6,7 +6,7 @@ class QuizController < ApplicationController
   FILE_POEMS = FilePushkin.new.parse
 
   def index 
-    @questions=[]     
+    @questions=History.paginate(:page => params[:page], :per_page => 50)     
   end
 
   def req
@@ -30,7 +30,7 @@ class QuizController < ApplicationController
       task_id: params[:id]
     }
     Net::HTTP.post_form(uri, parameters)
-    @questions << req
+    History.create(question: question, task_id: id, level: level, answer: answer)
   end
 
   private

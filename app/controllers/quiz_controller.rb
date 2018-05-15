@@ -5,7 +5,8 @@ class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token  
   FILE_POEMS = FilePushkin.new.parse
 
-  def index      
+  def index 
+    @questions=[]     
   end
 
   def req

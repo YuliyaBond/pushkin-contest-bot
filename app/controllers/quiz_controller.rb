@@ -30,6 +30,7 @@ class QuizController < ApplicationController
       task_id: params[:id]
     }
     Net::HTTP.post_form(uri, parameters)
+    @questions << req
   end
 
   private

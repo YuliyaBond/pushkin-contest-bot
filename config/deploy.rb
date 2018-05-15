@@ -9,14 +9,11 @@ set :deploy_to, "/var/www/pushkin"
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/system}
 
-
 set :pty, false
-
-
 
 set :ssh_options, { :forward_agent => true }
 
-set :rvm_ruby_version, '2.5.1@pushkin-contest-bot'
+set :rvm_ruby_version, '2.5.1'
 
 set :puma_preload_app, true
 set :puma_init_active_record, true

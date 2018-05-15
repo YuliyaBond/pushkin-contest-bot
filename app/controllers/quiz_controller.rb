@@ -99,6 +99,6 @@ class QuizController < ApplicationController
   
   
   def del(str)
-    return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')
+    return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '') 
   end
 end

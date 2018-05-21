@@ -40,10 +40,10 @@ class QuizController < ApplicationController
   private
 
   def level_1(question)
-    question = del(question)
+    question = delete_excess(question)
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
-        line = del(line)
+        line = delete_excess(line)
         return poem[0] if line == question
       end
     end
@@ -119,7 +119,7 @@ class QuizController < ApplicationController
     parts = question.split('')
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
-        letters = del(line).split('')
+        letters = delete_excess(line).split('')
         if parts - letters == []
           return line
         end
@@ -127,7 +127,7 @@ class QuizController < ApplicationController
     end
   end 
   
-  def del(str)
+  def delete_excess(str)
     return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')
   end
 end

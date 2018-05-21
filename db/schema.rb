@@ -14,10 +14,9 @@ ActiveRecord::Schema.define(version: 2018_05_13_201539) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "question"
-    t.decimal "task_id"
-    t.string "level"
-    t.string "decimal"
     t.string "answer"
+    t.decimal "task_id"
+    t.decimal "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

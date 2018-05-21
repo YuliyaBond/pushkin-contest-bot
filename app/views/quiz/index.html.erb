@@ -1,3 +1,18 @@
 <h1>hello</h1>
 Sorry, but I don't have enough time to do history.
-
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th>Task_id</th>
+    <th>Level</th>
+  </tr>
+  <% @elements.each do |elem| %>
+  <tr>
+    <td><%= elem.question %></td>
+    <td><%= elem.answer %></td>
+    <td><%= elem.task_id %></td>
+    <td><%= elem.level %></td>
+  </tr>
+  <% end %>
+</table>

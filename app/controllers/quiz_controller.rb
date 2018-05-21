@@ -6,7 +6,7 @@ class QuizController < ApplicationController
   FILE_POEMS = FilePushkin.new.parse
 
   def index 
-    
+   @elements = quizzes.all 
   end
 
   def req

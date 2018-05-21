@@ -117,7 +117,7 @@ class QuizController < ApplicationController
 
   def level_6(question)
     parts = question.split('')
-    FILE_POEMS.each do |poem|
+    FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         letters = del(line).split('')
         if parts - letters == []

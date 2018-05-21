@@ -22,7 +22,7 @@ class QuizController < ApplicationController
     when 4
       answer = level_4(params[:question])
     when 5
-      answer = level_4(params[:question])
+      answer = level_5(params[:question])
     end
 
     uri = URI("http://pushkin.rubyroidlabs.com/quiz")

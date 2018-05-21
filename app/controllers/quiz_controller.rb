@@ -27,6 +27,8 @@ class QuizController < ApplicationController
       answer = level_6_7(params[:question])
     when 7
       answer = level_6_7(params[:question])
+    when 8
+      answer = level_8(params[:question])
     end
 
     uri = URI("http://pushkin.rubyroidlabs.com/quiz")
@@ -70,9 +72,9 @@ class QuizController < ApplicationController
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
-          ind_1 = poem[1].index(line)           
-          ind_2 =  poem[1][ind_1 + 1]
-          word_2 = ind_2.split(' ') - parts[1].split(' ')
+          index_1 = poem[1].index(line)           
+          index_2 =  poem[1][index_1 + 1]
+          word_2 = index_2.split(' ') - parts[1].split(' ')
           @str = "#{word_1[0]},#{word_2[0]}"
           break
         end       
@@ -89,11 +91,11 @@ class QuizController < ApplicationController
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
-          ind_1 = poem[1].index(line)           
-          ind_2 =  poem[1][ind_1 + 1]
-          ind_3 = poem[1][ind_1 + 2]
-          word_2 = ind_2.split(' ') - parts[1].split(' ')
-          word_3 = ind_3.split(' ') - parts[2].split(' ')
+          index_1 = poem[1].index(line)           
+          index_2 =  poem[1][index_1 + 1]
+          index_3 = poem[1][index_1 + 2]
+          word_2 = index_2.split(' ') - parts[1].split(' ')
+          word_3 = index_3.split(' ') - parts[2].split(' ')
           @str = "#{word_1[0]},#{word_2[0]},#{word_3[0]}"
           break
         end       
@@ -129,6 +131,22 @@ class QuizController < ApplicationController
     end
   end 
   
+  def level_8(question)
+    parts = question.split('')
+    FILE_PUSH_POEMS.each do |poem|
+      poem[1].each do |line|
+        letters = delete_excess(line).split('')
+        positive = letters - parts
+        sum = parts + letters
+        end_str = sum.uniq
+        end_str.pop
+        end_str += positive
+        if end_str - letters == []
+          return line 
+        end
+      end
+    end
+  end
   def delete_excess(str)
     return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')
   end

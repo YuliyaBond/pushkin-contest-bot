@@ -6,7 +6,7 @@ class QuizController < ApplicationController
   PUSHKIN_POEMS = FilePushkin.new.parse
 
   def index 
-    
+    @elements = quizzes.all 
   end
 
   def req
@@ -100,7 +100,7 @@ class QuizController < ApplicationController
 
   def level_5(question)
     parts = question.split(' ')
-    FILE_POEMS.each do |poem|
+    PUSHKIN_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
           word_1 = line.split(' ') - question.split(' ')

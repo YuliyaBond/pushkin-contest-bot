@@ -30,7 +30,7 @@ class QuizController < ApplicationController
       task_id: params[:id]
     }
     Net::HTTP.post_form(uri, parameters)
-    save_quizzes(question, answer, level, task_id)
+    Quizzes.new params[:question], answer, params[:level], params[:task_id]
 
   end
 

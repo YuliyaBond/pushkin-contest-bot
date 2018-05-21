@@ -23,6 +23,8 @@ class QuizController < ApplicationController
       answer = level_4(params[:question])
     when 5
       answer = level_5(params[:question])
+    when 6
+      answer = level_6(params[:question])
     end
 
     uri = URI("http://pushkin.rubyroidlabs.com/quiz")
@@ -97,6 +99,7 @@ class QuizController < ApplicationController
     end
     return @str
   end
+
   def level_5(question)
     parts = question.split(' ')
     FILE_PUSH_POEMS.each do |poem|
@@ -111,7 +114,18 @@ class QuizController < ApplicationController
     end
     return @str
   end
-  
+
+  def level_6(question)
+    parts = question.split('')
+    FILE_POEMS.each do |poem|
+      poem[1].each do |line|
+        letters = del(line).split('')
+        if parts - letters == []
+          return line
+        end
+      end
+    end
+  end 
   
   def del(str)
     return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')

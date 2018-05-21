@@ -3,7 +3,7 @@ require_relative '../services/pushkin'
 
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token  
-  PUSHKIN_POEMS = FilePushkin.new.parse
+  FILE_POEMS = FilePushkin.new.parse
 
   def index 
     @elements = quizzes.all 
@@ -39,7 +39,7 @@ class QuizController < ApplicationController
 
   def level_1(question)
     question = del(question)
-    PUSHKIN_POEMS.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         line = del(line)
         return poem[0] if line == question
@@ -49,7 +49,7 @@ class QuizController < ApplicationController
 
   def level_2(question)
     parts = question.split('%')
-    PUSHKIN_POEMS.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
           return line.split(' ') - question.split(' ')
@@ -62,7 +62,7 @@ class QuizController < ApplicationController
     parts = question.split("\n")
     str_1 = parts[0].split('%')
     
-    PUSHKIN_POEMS.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
@@ -81,7 +81,7 @@ class QuizController < ApplicationController
     parts = question.split("\n")
     str_1 = parts[0].split('%')
     
-    PUSHKIN_POEMS.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? str_1[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
@@ -100,7 +100,7 @@ class QuizController < ApplicationController
 
   def level_5(question)
     parts = question.split(' ')
-    PUSHKIN_POEMS.each do |poem|
+    FILE_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
           word_1 = line.split(' ') - question.split(' ')

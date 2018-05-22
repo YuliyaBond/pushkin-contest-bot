@@ -66,42 +66,42 @@ class QuizController < ApplicationController
 
   def level_3(question)
     parts = question.split("\n")
-    str_1 = parts[0].split('%')
+    first_str = parts[0].split('%')
     
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
-        if line.include? str_1[0]
+        if line.include? first_str[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
           index_1 = poem[1].index(line)           
           index_2 =  poem[1][index_1 + 1]
           word_2 = index_2.split(' ') - parts[1].split(' ')
-          @str = "#{word_1[0]},#{word_2[0]}"
+          @last_str = "#{word_1[0]},#{word_2[0]}"
           break
         end       
       end
     end
-    return @str
+    return @last_str
   end
 
   def level_4(question)
     parts = question.split("\n")
-    str_1 = parts[0].split('%')
+    first_str = parts[0].split('%')
     
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
-        if line.include? str_1[0]
+        if line.include? first_str[0]
           word_1 =  line.split(' ') - parts[0].split(' ')
           index_1 = poem[1].index(line)           
           index_2 =  poem[1][index_1 + 1]
           index_3 = poem[1][index_1 + 2]
           word_2 = index_2.split(' ') - parts[1].split(' ')
           word_3 = index_3.split(' ') - parts[2].split(' ')
-          @str = "#{word_1[0]},#{word_2[0]},#{word_3[0]}"
+          @last_str = "#{word_1[0]},#{word_2[0]},#{word_3[0]}"
           break
         end       
       end
     end
-    return @str
+    return @last_str
   end
 
   def level_5(question)
@@ -136,17 +136,18 @@ class QuizController < ApplicationController
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         letters = delete_excess(line).split('')
-        positive = letters - parts
+        tmp = letters - parts
         sum = parts + letters
-        end_str = sum.uniq
-        end_str.pop
-        end_str += positive
-        if end_str - letters == []
+        last_str = sum.uniq
+        last_str.pop
+        last_str += tmp
+        if last_str - letters == []
           return line 
         end
       end
     end
   end
+
   def delete_excess(str)
     return str.gsub(/[,?.!:+-=*_@#()^;№'<>~`«»—]/, '')
   end

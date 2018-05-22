@@ -45,6 +45,7 @@ class QuizController < ApplicationController
 
   def level_1(question)
     question = delete_excess(question)
+
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         line = delete_excess(line)
@@ -55,6 +56,7 @@ class QuizController < ApplicationController
 
   def level_2(question)
     parts = question.split('%')
+
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
@@ -106,6 +108,7 @@ class QuizController < ApplicationController
 
   def level_5(question)
     parts = question.split(' ')
+
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         if line.include? parts[0]
@@ -121,6 +124,7 @@ class QuizController < ApplicationController
 
   def level_6_7(question)
     parts = question.split('')
+    
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         letters = delete_excess(line).split('')
@@ -133,6 +137,7 @@ class QuizController < ApplicationController
   
   def level_8(question)
     parts = question.split('')
+
     FILE_PUSH_POEMS.each do |poem|
       poem[1].each do |line|
         letters = delete_excess(line).split('')
